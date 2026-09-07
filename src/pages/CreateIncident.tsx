@@ -48,8 +48,8 @@ export default function CreateIncident() {
         Back to Dashboard
       </button>
 
-      <div className="bg-white/80 dark:bg-zinc-900/30 border border-zinc-200 dark:border-white/5 p-10 rounded-3xl backdrop-blur-xl">
-        <div className="flex items-center gap-4 mb-10">
+      <div className="bg-white/80 dark:bg-zinc-900/30 border border-zinc-200 dark:border-white/5 p-6 md:p-10 rounded-3xl backdrop-blur-xl">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 md:mb-10">
           <div className="w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center border border-blue-600/20">
             <ShieldAlert className="w-7 h-7 text-blue-500" />
           </div>

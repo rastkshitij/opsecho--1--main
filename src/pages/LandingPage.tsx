@@ -28,7 +28,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-zinc-50 dark:bg-[#0a0a0a] text-zinc-900 dark:text-white selection:bg-blue-500/30 overflow-x-hidden transition-colors duration-300">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <Zap className="w-5 h-5 fill-white" />
@@ -40,15 +40,15 @@ export default function LandingPage() {
             <a href="#how-it-works" className="hover:text-zinc-900 dark:hover:text-white transition-colors">How it Works</a>
             <a href="#integrations" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Integrations</a>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
             >
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <Link to="/login" className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors">Login</Link>
-            <Link to="/register" className="px-4 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-sm font-semibold rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
+            <Link to="/login" className="hidden sm:block text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors">Login</Link>
+            <Link to="/register" className="px-3 py-1.5 sm:px-4 sm:py-2 bg-zinc-900 dark:bg-white text-white dark:text-black text-xs sm:text-sm font-semibold rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
               Get Started
             </Link>
           </div>
@@ -56,7 +56,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-32 px-6 relative perspective-[2000px]">
+      <section className="pt-24 sm:pt-32 pb-24 sm:pb-32 px-4 sm:px-6 relative perspective-[2000px] overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
             <div className="absolute top-20 left-1/4 w-[40rem] h-[30rem] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen" />
@@ -69,7 +69,7 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 sm:mb-6 leading-[1.15]">
               Turn Incident Chaos into <br />
               <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
                 Coordinated Intelligence
@@ -104,17 +104,17 @@ export default function LandingPage() {
               className="relative w-full max-w-5xl bg-zinc-900/80 border border-white/10 rounded-2xl aspect-[16/9] md:aspect-[21/9] overflow-hidden shadow-2xl backdrop-blur-xl"
             >
               {/* Window Controls */}
-              <div className="absolute top-0 left-0 w-full h-10 bg-zinc-800/80 border-b border-white/5 flex items-center px-4 gap-2 z-50">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+              <div className="absolute top-0 left-0 w-full h-8 sm:h-10 bg-zinc-800/80 border-b border-white/5 flex items-center px-4 gap-2 z-50">
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                 <div className="mx-auto flex gap-2 p-1 bg-black/40 rounded-md">
-                  <div className="w-32 h-4 bg-white/10 rounded-sm" />
+                  <div className="w-20 sm:w-32 h-3 sm:h-4 bg-white/10 rounded-sm" />
                 </div>
               </div>
 
               {/* Advanced 3D Animation Inside */}
-              <div className="p-8 pt-16 flex items-center justify-center h-full bg-gradient-to-br from-zinc-950 via-[#0a0a0a] to-zinc-900 relative">
+              <div className="p-4 sm:p-8 pt-12 sm:pt-16 flex items-center justify-center h-full bg-gradient-to-br from-zinc-950 via-[#0a0a0a] to-zinc-900 relative">
                 {/* Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
                 
@@ -339,13 +339,13 @@ export default function LandingPage() {
             })}
           </div>
 
-          <div className="mt-6 grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-900 p-7 text-white dark:border-white/10 dark:bg-[#11131a] md:grid-cols-[1fr_auto] md:items-center md:p-9">
+          <div className="mt-6 grid gap-4 rounded-2xl border border-zinc-200 bg-white p-7 text-zinc-900 dark:border-white/10 dark:bg-[#11131a] dark:text-white md:grid-cols-[1fr_auto] md:items-center md:p-9">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-400">The response loop</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">The response loop</p>
               <h3 className="mt-3 text-2xl font-bold">Observe. Decide. Act. Learn.</h3>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">Every message becomes useful incident context, so responders spend less time reconstructing what happened and more time moving the system forward.</p>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">Every message becomes useful incident context, so responders spend less time reconstructing what happened and more time moving the system forward.</p>
             </div>
-            <div className="flex items-center gap-3 text-sm text-zinc-300"><Users className="h-5 w-5 text-blue-400" /> One room, one source of truth</div>
+            <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300"><Users className="h-5 w-5 text-blue-600 dark:text-blue-400" /> One room, one source of truth</div>
           </div>
 
           <div className="mt-10 flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Built for human-led response</div>
