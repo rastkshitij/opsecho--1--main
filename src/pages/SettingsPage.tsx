@@ -8,7 +8,17 @@ import { clsx } from "clsx";
 export default function SettingsPage() {
   const { user } = useAuth();
   const { theme, setTheme } = useTheme();
+  
+  // Read query parameters
   const [activeTab, setActiveTab] = useState("profile");
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("integration") || params.get("error")) {
+      setActiveTab("integrations");
+    }
+  }, []);
+
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -17,6 +27,9 @@ export default function SettingsPage() {
     name: user?.name || "",
     email: user?.email || "",
     role: user?.role || "ENGINEER",
+    phone: "",
+    timezone: "UTC-8 (Pacific Time)",
+    department: "Engineering",
   });
 
   const [preferences, setPreferences] = useState({
@@ -26,11 +39,10 @@ export default function SettingsPage() {
   });
 
   const [integrations, setIntegrations] = useState<string[]>([]);
-  const API_URL = "http://localhost:3000/api";
 
   useEffect(() => {
     if (user?.id) {
-      fetch(`${API_URL}/integrations`, {
+      fetch(`/api/integrations`, {
         headers: { "x-user-id": user.id }
       })
       .then(res => res.json())
@@ -45,13 +57,13 @@ export default function SettingsPage() {
 
   const handleConnectIntegration = (provider: string) => {
     if (!user) return;
-    window.location.href = `${API_URL}/integrations/${provider}/authorize?userId=${user.id}`;
+    window.location.href = `/api/integrations/${provider}/authorize?userId=${user.id}`;
   };
 
   const handleDisconnectIntegration = async (provider: string) => {
     if (!user) return;
     try {
-      const res = await fetch(`${API_URL}/integrations/${provider}`, {
+      const res = await fetch(`/api/integrations/${provider}`, {
         method: "DELETE",
         headers: { "x-user-id": user.id }
       });
@@ -153,7 +165,7 @@ export default function SettingsPage() {
                           type="text"
                           value={profileData.name}
                           onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                          className="w-full bg-zinc-50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all text-zinc-900 dark:text-white"
+                          className="w-full bg-zinc-50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all text-zinc-900 dark:text-white"
                         />
                       </div>
                       <div className="space-y-2">
@@ -162,9 +174,50 @@ export default function SettingsPage() {
                           type="email"
                           value={profileData.email}
                           onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                          className="w-full bg-zinc-100 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all text-zinc-500 dark:text-zinc-400"
+                          className="w-full bg-zinc-100 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all text-zinc-500 dark:text-zinc-400 cursor-not-allowed"
                           disabled
                         />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Phone Number (Alerts)</label>
+                        <input
+                          type="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={profileData.phone}
+                          onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
+                          className="w-full bg-zinc-50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all text-zinc-900 dark:text-white"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Department</label>
+                        <select
+                          value={profileData.department}
+                          onChange={(e) => setProfileData({...profileData, department: e.target.value})}
+                          className="w-full bg-zinc-50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all text-zinc-900 dark:text-white appearance-none"
+                        >
+                          <option value="Engineering">Engineering</option>
+                          <option value="SRE">Site Reliability (SRE)</option>
+                          <option value="Product">Product</option>
+                          <option value="Support">Customer Support</option>
+                          <option value="Executive">Executive</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-2 col-span-2">
+                        <label className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Timezone</label>
+                        <select
+                          value={profileData.timezone}
+                          onChange={(e) => setProfileData({...profileData, timezone: e.target.value})}
+                          className="w-full bg-zinc-50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all text-zinc-900 dark:text-white appearance-none"
+                        >
+                          <option value="UTC-8 (Pacific Time)">UTC-8 (Pacific Time)</option>
+                          <option value="UTC-5 (Eastern Time)">UTC-5 (Eastern Time)</option>
+                          <option value="UTC+0 (GMT)">UTC+0 (GMT)</option>
+                          <option value="UTC+1 (CET)">UTC+1 (CET)</option>
+                          <option value="UTC+5:30 (IST)">UTC+5:30 (IST)</option>
+                          <option value="UTC+10 (AEST)">UTC+10 (AEST)</option>
+                        </select>
                       </div>
                     </div>
                   </form>
@@ -356,7 +409,7 @@ export default function SettingsPage() {
             </AnimatePresence>
             
             {/* Save Action Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[#121212] to-transparent pointer-events-none flex justify-end">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white dark:from-[#121212] to-transparent pointer-events-none flex justify-end">
               <button
                 onClick={handleSave}
                 disabled={isSaving}

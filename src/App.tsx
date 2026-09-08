@@ -13,8 +13,6 @@ import IncidentHistory from "./pages/IncidentHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 import SettingsPage from "./pages/SettingsPage";
 import DashboardLayout from "./layouts/DashboardLayout";
-import HowItWorksPage from "./pages/HowItWorksPage";
-import IntegrationsPage from "./pages/IntegrationsPage";
 
 
 function AppRoutes() {
@@ -22,7 +20,7 @@ function AppRoutes() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-zinc-50 dark:bg-[#0a0a0a] flex items-center justify-center transition-colors duration-200">
         <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -32,8 +30,6 @@ function AppRoutes() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/how-it-works" element={<HowItWorksPage />} />
-        <Route path="/integrations" element={<IntegrationsPage />} />
         <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />} />
         <Route path="/register" element={isAuthenticated ? <Navigate to="/dashboard" /> : <RegisterPage />} />
         <Route path="/join" element={<JoinPage />} />

@@ -23,7 +23,7 @@ export default function AdminDashboard() {
 
       <div className="grid md:grid-cols-4 gap-6">
         {stats.map((stat) => (
-          <div key={stat.label} className="bg-zinc-900/30 border border-white/5 p-6 rounded-3xl hover:bg-zinc-900/50 transition-all">
+          <div key={stat.label} className="bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-white/5 p-6 rounded-3xl hover:bg-zinc-900/50 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
                 <stat.icon className={cn("w-5 h-5", stat.color)} />
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <section className="bg-zinc-900/30 border border-white/5 rounded-3xl p-8 space-y-6">
+        <section className="bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-white/5 rounded-3xl p-8 space-y-6">
           <div className="flex items-center gap-3 mb-2">
             <Database className="w-5 h-5 text-blue-500" />
             <h3 className="font-bold">Infrastructure Status</h3>
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
           </div>
         </section>
 
-        <section className="bg-zinc-900/30 border border-white/5 rounded-3xl p-8 space-y-6">
+        <section className="bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-white/5 rounded-3xl p-8 space-y-6">
           <div className="flex items-center gap-3 mb-2">
             <Key className="w-5 h-5 text-purple-500" />
             <h3 className="font-bold">Recent Audit Logs</h3>

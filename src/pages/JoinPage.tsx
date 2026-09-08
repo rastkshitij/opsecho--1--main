@@ -27,8 +27,8 @@ export default function JoinPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center p-6 selection:bg-blue-500/30">
-      <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-zinc-500 hover:text-white transition-colors">
+    <div className="min-h-screen bg-zinc-50 dark:bg-[#050505] text-zinc-900 dark:text-white flex flex-col items-center justify-center p-6 selection:bg-blue-500/30 transition-colors duration-200">
+      <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
         <ArrowLeft className="w-4 h-4" />
         Back to Home
       </Link>
@@ -43,10 +43,10 @@ export default function JoinPage() {
             <Zap className="w-8 h-8 text-white fill-white" />
           </div>
           <h1 className="text-3xl font-bold mb-2 tracking-tight">Join Response Room</h1>
-          <p className="text-zinc-500">Enter a unique incident code to coordinate with the team.</p>
+          <p className="text-zinc-500 dark:text-zinc-400">Enter a unique incident code to coordinate with the team.</p>
         </div>
 
-        <div className="bg-zinc-900/50 border border-white/5 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
+        <div className="bg-white/80 dark:bg-zinc-900/50 border border-zinc-200 dark:border-white/5 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
           <form onSubmit={handleJoin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-[10px] uppercase tracking-widest font-bold text-zinc-500 ml-1">Room Code</label>
@@ -59,7 +59,7 @@ export default function JoinPage() {
                   placeholder="E.G. PAY-4827"
                   value={roomCode}
                   onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-                  className="w-full bg-black/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 transition-all font-mono tracking-widest text-lg"
+                  className="w-full bg-white dark:bg-black/50 border border-zinc-200 dark:border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 transition-all font-mono tracking-widest text-lg text-zinc-900 dark:text-white"
                   autoFocus
                 />
               </div>
@@ -77,7 +77,7 @@ export default function JoinPage() {
 
             <button
               disabled={isLoading || !roomCode}
-              className="w-full bg-white text-black font-bold py-4 rounded-2xl hover:bg-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold py-4 rounded-2xl hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
@@ -90,22 +90,22 @@ export default function JoinPage() {
             </button>
           </form>
 
-          <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div className="mt-8 pt-8 border-t border-zinc-200 dark:border-white/5 grid grid-cols-2 gap-4">
+            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/5">
               <Activity className="w-5 h-5 text-blue-500 mb-2" />
-              <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Active Stats</p>
+              <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Active Stats</p>
               <p className="text-xl font-bold mt-1 tracking-tight">Live</p>
             </div>
-            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+            <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/5">
               <ShieldAlert className="w-5 h-5 text-orange-500 mb-2" />
-              <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Safety First</p>
+              <p className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">Safety First</p>
               <p className="text-xl font-bold mt-1 tracking-tight">Audit</p>
             </div>
           </div>
         </div>
 
-        <p className="mt-8 text-center text-xs text-zinc-600">
-          Don't have a code? <Link to="/dashboard" className="text-zinc-400 hover:text-white underline underline-offset-4">Check your dashboard</Link>
+        <p className="mt-8 text-center text-xs text-zinc-500 dark:text-zinc-600">
+          Don't have a code? <Link to="/dashboard" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white underline underline-offset-4">Check your dashboard</Link>
         </p>
       </motion.div>
     </div>

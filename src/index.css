@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: "Inter", sans-serif;
@@ -35,11 +36,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
 }
 
-/* Base HUD Panel */
 .glass-panel, .hud-panel {
-  @apply bg-white/70 dark:bg-[#060814]/70 backdrop-blur-2xl border border-zinc-200 dark:border-indigo-500/20 shadow-[0_0_30px_rgba(79,70,229,0.05)];
-  /* Subtle inner glow for sci-fi feel */
-  box-shadow: inset 0 0 20px rgba(79, 70, 229, 0.05), 0 4px 30px rgba(0, 0, 0, 0.5);
+  @apply bg-white/70 dark:bg-[#060814]/70 backdrop-blur-2xl border border-zinc-200 dark:border-indigo-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_20px_rgba(79,70,229,0.05),_0_4px_30px_rgba(0,0,0,0.5)];
 }
 
 /* Interactive HUD Card */
