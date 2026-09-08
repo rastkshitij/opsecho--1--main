@@ -17,7 +17,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Initialize Socket.io only if not running in a Vercel Serverless Function
-// (Vercel Serverless does not support persistent WebSockets)
+
 if (!process.env.VERCEL) {
   const io = initSocket(server);
   app.set("io", io);
